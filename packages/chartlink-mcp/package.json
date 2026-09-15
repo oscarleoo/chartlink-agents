@@ -4,16 +4,33 @@
   "description": "stdio bridge to the chartlink MCP server (https://chartlink.app/mcp) for clients that cannot speak HTTP MCP yet. Charts and tables with live-updating embed links.",
   "license": "MIT",
   "type": "module",
-  "bin": { "chartlink-mcp": "./dist/index.js" },
-  "files": ["dist", "README.md"],
+  "bin": {
+    "chartlink-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "prepublishOnly": "npm run build"
   },
-  "engines": { "node": ">=18" },
-  "keywords": ["mcp", "model-context-protocol", "charts", "chartlink", "embed"],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "charts",
+    "chartlink",
+    "embed"
+  ],
   "homepage": "https://chartlink.app",
-  "repository": { "type": "git", "url": "https://github.com/oscarleoo/chartlink-agents", "directory": "packages/chartlink-mcp" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oscarleoo/chartlink-agents.git",
+    "directory": "packages/chartlink-mcp"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0"
   },
