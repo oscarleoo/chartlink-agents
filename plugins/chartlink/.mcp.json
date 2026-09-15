@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "chartlink": {
+      "type": "http",
+      "url": "https://chartlink.app/mcp",
+      "headers": {
+        "Authorization": "Bearer ${user_config.api_key}"
+      }
+    }
+  }
+}

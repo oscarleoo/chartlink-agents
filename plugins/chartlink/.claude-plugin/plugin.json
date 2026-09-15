@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "chartlink",
+  "version": "0.1.0",
+  "description": "Charts and tables with live-updating embed links, made from one message. Connects the chartlink MCP server and teaches the create → preview → publish loop.",
+  "author": {
+    "name": "chartlink",
+    "email": "support@chartlink.app",
+    "url": "https://chartlink.app"
+  },
+  "homepage": "https://chartlink.app/made-with",
+  "repository": "https://github.com/oscarleoo/chartlink-agents",
+  "license": "MIT",
+  "keywords": ["charts", "data visualization", "embed", "tables", "mcp", "substack", "newsletter"],
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "chartlink API key",
+      "description": "Starts with viz_. Don't have one? Ask Claude to \"set up chartlink\": the skill calls POST https://chartlink.app/api/signup (no account needed) and shows you the key to paste here.",
+      "sensitive": true
+    }
+  }
+}

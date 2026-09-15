@@ -1,0 +1,40 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "app.chartlink/chartlink",
+  "description": "Charts and tables for AI agents with live-updating embed links. Draft from one message, look at the preview, publish; update the numbers later and every embed follows. No accounts: POST /api/signup returns a key.",
+  "repository": {
+    "url": "https://github.com/oscarleoo/chartlink-agents",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://chartlink.app/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer <chartlink API key>. Get one with POST https://chartlink.app/api/signup (no account).",
+          "is_required": true,
+          "is_secret": true
+        }
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "registry_type": "npm",
+      "identifier": "chartlink-mcp",
+      "version": "0.1.0",
+      "transport": { "type": "stdio" },
+      "environment_variables": [
+        {
+          "name": "CHARTLINK_API_KEY",
+          "description": "chartlink API key (viz_...). POST https://chartlink.app/api/signup returns one, no account needed.",
+          "is_required": true,
+          "is_secret": true
+        }
+      ]
+    }
+  ]
+}
