@@ -1,12 +1,15 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
-  "name": "app.chartlink/chartlink",
-  "description": "Charts and tables for AI agents with live-updating embed links. Draft from one message, look at the preview, publish; update the numbers later and every embed follows. No accounts: POST /api/signup returns a key.",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.oscarleoo/chartlink",
+  "title": "chartlink",
+  "description": "Charts and tables for AI agents with live-updating embed links. No account: signup returns a key.",
   "repository": {
     "url": "https://github.com/oscarleoo/chartlink-agents",
-    "source": "github"
+    "source": "github",
+    "subfolder": "packages/chartlink-mcp"
   },
-  "version": "0.1.0",
+  "websiteUrl": "https://chartlink.app",
+  "version": "0.1.1",
   "remotes": [
     {
       "type": "streamable-http",
@@ -14,25 +17,25 @@
       "headers": [
         {
           "name": "Authorization",
-          "description": "Bearer <chartlink API key>. Get one with POST https://chartlink.app/api/signup (no account).",
-          "is_required": true,
-          "is_secret": true
+          "description": "Bearer <chartlink API key>. Get one with POST https://chartlink.app/api/signup (no account needed; the key is shown once).",
+          "isRequired": true,
+          "isSecret": true
         }
       ]
     }
   ],
   "packages": [
     {
-      "registry_type": "npm",
+      "registryType": "npm",
       "identifier": "chartlink-mcp",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "transport": { "type": "stdio" },
-      "environment_variables": [
+      "environmentVariables": [
         {
           "name": "CHARTLINK_API_KEY",
           "description": "chartlink API key (viz_...). POST https://chartlink.app/api/signup returns one, no account needed.",
-          "is_required": true,
-          "is_secret": true
+          "isRequired": true,
+          "isSecret": true
         }
       ]
     }
