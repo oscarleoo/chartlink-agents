@@ -15,7 +15,7 @@ chartlink is agent-first: there are no accounts or logins. The API key IS the wo
 
 If the `chartlink` MCP tools are available, you are set up — skip to the loop.
 
-If they are not (no key configured yet), get one — no account, no human step:
+If they are not (no key configured yet), get one — no account, no human step. Over a keyless MCP connection the `signup` tool does this without leaving MCP; over REST:
 
 ```bash
 curl -s -X POST https://chartlink.app/api/signup \
@@ -28,9 +28,9 @@ Read the manual once per session before the first chart: https://chartlink.app/l
 
 ## The loop
 
-1. **Pick the type.** `list_asset_types` (or `GET /api/asset-types`): line, bar, area, scatter, dumbbell, slope, heatmap, choropleth, pie, waterfall, table.
+1. **Pick the type.** `list_asset_types` (or `GET /api/asset-types`) lists the ids with a one-line description each — read it rather than assuming; the set grows (twelve today, from line and bar to choropleth, symbol-map and table). **Prefer a template:** `list_templates` shows published charts whose whole design you can reuse — `create_asset` with `{template: "<id>", data}` copies type and config, so you only bring the numbers.
 2. **Read the schema for that type once.** `get_spec_schema` (or `GET /api/asset-types/{type}/schema`). It returns the JSON Schema, two worked examples, and `defaults` — the full config in force when nothing is set. Read a baseline value from `defaults` instead of guessing it.
-3. **Create a draft.** `create_asset` with `type`, `data` (typed columns + row arrays) and a `config` that sets only what the story needs: a title, a description, a source. A 201 means it validated AND rendered.
+3. **Create a draft.** `create_asset` with `type`, `data` (typed columns + row arrays) and a `config` that sets only what the story needs: a title, a description, a source. A 201 means it validated AND rendered. **Maps:** `chart.geography` names a boundary set (`countries`, `us-states`, or a country's regions such as `de-regions`); call `list_geographies` before naming regions, since an unknown region fails with the closest matches. `chart.projection` and `chart.bounds` pick the flattening and the crop; a `symbol-map` puts lon/lat rows on the same basemaps.
 4. **Look at it.** The create/update result includes the preview image inline over MCP (over REST, GET `urls.previewPng` with the same Authorization header). Judge it like an editor: is the story readable at a glance, are labels dropped, is the title doing work?
 5. **Adjust with a small patch.** `update_asset` with `configPatch` (deep-merged) for changes; pass `config` (replaces everything) only to remove keys. Repeat 4–5 until it is right. Two or three passes is normal; ten means the type is wrong.
 6. **Publish.** `publish_asset`. Then hand back what the person needs from `urls`:
@@ -46,7 +46,7 @@ Read the manual once per session before the first chart: https://chartlink.app/l
 
 ## Handing a human the wheel
 
-When the person wants to fine-tune looks by hand (colours, spacing, fonts), mint an edit link: `create_edit_link`. It opens a visual editor for that one chart, no login, and saves through the same API. Offer it instead of a nudge-by-nudge loop.
+When the person wants to fine-tune looks by hand (colours, spacing, fonts), mint an edit link: `create_edit_link`. It opens a visual editor for that one chart, no login, and saves through the same API. Publish first: the editor republishes a published chart but cannot publish a draft. Offer it instead of a nudge-by-nudge loop.
 
 ## Rules that save a round trip
 

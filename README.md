@@ -37,3 +37,7 @@ Everything is documented for agents at https://chartlink.app/llms.txt and as Ope
 ## Listing kit
 
 `listing/` holds the text and image used on every directory chartlink is listed in.
+
+## Keeping this repo honest
+
+`node scripts/check.mjs` compares LISTING.md and SKILL.md with the live server: the MCP tool inventory (tools/list works without a key) and the chart-type list from llms.txt. Run it before a release; it exits 1 on drift.

@@ -20,7 +20,7 @@ chartlink is a chart platform built for agents rather than for a human at a dash
 
 The part people keep: when the numbers change, `PUT /data` republishes every embed and image at once. Or attach a CSV/JSON URL and the chart refetches itself on a schedule with no agent involved.
 
-Eleven types: line, bar, area, scatter, dumbbell, slope, heatmap, choropleth (countries and US states), pie, waterfall, and sortable tables. Brands set fonts, colours and spacing once; charts inherit them. Any Google Font by name. Editorial defaults: direct labels over legends, dropped labels over squeezed ones, a source line, a notes line for the caveat.
+Twelve types: line, bar, area, scatter, dumbbell, slope, heatmap, choropleth, symbol map, pie, waterfall, and sortable tables. Maps draw any of 237 geographies — world countries, US states, every country's regions — cropped with bounds and flattened with a choice of projections, with lon/lat points on top. Any published chart is a template. Brands set fonts, colours and spacing once; charts inherit them. Any Google Font by name. Editorial defaults: direct labels over legends, dropped labels over squeezed ones, a source line, a notes line for the caveat.
 
 Hosting is free with a small "Made with chartlink" badge. One credit makes one chart premium forever: no badge, SVG export, a custom footer. Nothing is metered.
 
@@ -52,9 +52,9 @@ stdio-only clients:
 npx chartlink-mcp     (CHARTLINK_API_KEY=viz_... in the environment)
 ```
 
-## Tools (24)
+## Tools (27)
 
-whoami · list_asset_types · get_spec_schema · list_assets · get_asset · create_asset · update_asset · replace_asset_data · set_data_source · clear_data_source · fetch_data_source · publish_asset · unpublish_asset · duplicate_asset · delete_asset · list_brands · create_brand · update_brand · get_billing · create_checkout_link · upgrade_to_premium · create_edit_link · revoke_edit_link · submit_feedback
+whoami · list_asset_types · get_spec_schema · list_assets · get_asset · list_geographies · list_templates · create_asset · update_asset · replace_asset_data · set_data_source · clear_data_source · fetch_data_source · publish_asset · unpublish_asset · duplicate_asset · delete_asset · list_brands · create_brand · update_brand · get_billing · create_checkout_link · upgrade_to_premium · create_edit_link · revoke_edit_link · submit_feedback · signup
 
 ## Categories / tags
 
