@@ -33,8 +33,8 @@
       "environmentVariables": [
         {
           "name": "CHARTLINK_API_KEY",
-          "description": "chartlink API key (viz_...). POST https://chartlink.app/api/signup returns one, no account needed.",
-          "isRequired": true,
+          "description": "chartlink API key (viz_...). POST https://chartlink.app/api/signup returns one, no account needed. Optional for listing tools; required for calling them.",
+          "isRequired": false,
           "isSecret": true
         }
       ]
