@@ -16,6 +16,8 @@ A stdio bridge to the chartlink MCP server, for clients that only launch local s
 
 No key yet? `curl -X POST https://chartlink.app/api/signup` returns a workspace and its key — no account. The key is shown once.
 
+Without a key the bridge still starts and lists every tool, so you can look before you sign up; each tool call then answers with the signup step instead of running.
+
 If your client speaks HTTP MCP, skip this package and connect directly: `https://chartlink.app/mcp` with `Authorization: Bearer viz_...`.
 
 The manual your agent should read first: https://chartlink.app/llms.txt

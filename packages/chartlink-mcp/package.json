@@ -1,6 +1,6 @@
 {
   "name": "chartlink-mcp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "stdio bridge to the chartlink MCP server (https://chartlink.app/mcp) for clients that cannot speak HTTP MCP yet. Charts and tables with live-updating embed links.",
   "license": "MIT",
   "type": "module",

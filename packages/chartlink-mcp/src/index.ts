@@ -16,24 +16,27 @@ import {
 const URL_ = process.env.CHARTLINK_MCP_URL ?? "https://chartlink.app/mcp";
 const KEY = process.env.CHARTLINK_API_KEY;
 
+// No key is not fatal: the hosted server lets a keyless connection
+// initialize and list tools (that is how registries inspect it, and how a
+// person kicks the tyres). Every tool CALL then answers with the one step
+// that gets a key. Say so once, on stderr, and carry on.
 if (!KEY) {
   process.stderr.write(
-    "chartlink-mcp: set CHARTLINK_API_KEY (starts with viz_). No key yet? " +
-      "curl -X POST https://chartlink.app/api/signup — no account needed, the key is shown once.\n"
+    "chartlink-mcp: no CHARTLINK_API_KEY set — tools are listed but calls will ask for a key. " +
+      "Get one with: curl -X POST https://chartlink.app/api/signup (no account; the key is shown once).\n"
   );
-  process.exit(2);
 }
 
 async function main() {
-  const upstream = new Client({ name: "chartlink-mcp-bridge", version: "0.1.0" });
+  const upstream = new Client({ name: "chartlink-mcp-bridge", version: "0.1.2" });
   await upstream.connect(
     new StreamableHTTPClientTransport(new URL(URL_), {
-      requestInit: { headers: { Authorization: `Bearer ${KEY}` } },
+      requestInit: { headers: KEY ? { Authorization: `Bearer ${KEY}` } : {} },
     })
   );
 
   const server = new Server(
-    { name: "chartlink", version: "0.1.0" },
+    { name: "chartlink", version: "0.1.2" },
     { capabilities: { tools: {} } }
   );
 
