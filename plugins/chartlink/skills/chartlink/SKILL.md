@@ -50,7 +50,7 @@ When the person wants to fine-tune looks by hand (colours, spacing, fonts), mint
 
 ## Rules that save a round trip
 
-- **Settings are element-shaped.** `title: {text, font, padding}`, `description`, `source`, `notes`, `texts[]` for free-placed captions, `chart: {…type options}`, `document: {background, padding, aspect}`. Errors name the path you wrote and list the keys an object takes.
+- **Settings are elements plus modules.** Every element (`title`, `description`, `source`, `notes`, `texts[]`, `legend`, `badge`, `chart`, `document`) has a few settings of its own and supports the shared modules `font`, `box` (margin, padding, background, border, radius), `position` (space canvas | plot | data, x, y, anchor, offset) and `stroke` — each defined once in the schema's `$defs`, the same everywhere. Errors name the path you wrote, list the keys an object takes, and name the new home of a retired key.
 - **Omit `document.aspect`** and the canvas adapts to its content. Set it only for a fixed shape (1:1 social card, 3:4 print slot).
 - **One title with a `\n`** is one element. Do not build a two-line title from two `texts[]` entries; use `description` for the subtitle.
 - **Dates:** column `type: "date"` parses `2024`, `2024-03`, `2024-03-15`, `2024-Q2` and ISO timestamps on its own. Anything else needs `dateFormat` (strftime, e.g. `%d/%m/%Y`).
