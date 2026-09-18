@@ -55,6 +55,12 @@ Claude Code plugin:
 /plugin install chartlink@chartlink
 ```
 
+Cursor (`mcp.json`, key in the `CHARTLINK_API_KEY` environment variable, or paste the key in place of the placeholder):
+
+```
+{ "mcpServers": { "chartlink": { "url": "https://chartlink.app/mcp", "headers": { "X-API-Key": "${env:CHARTLINK_API_KEY}" } } } }
+```
+
 stdio-only clients:
 
 ```

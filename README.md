@@ -13,6 +13,14 @@ This repo is how agents connect.
 
 The plugin adds the chartlink MCP server and a skill that teaches the create → preview → publish loop. Ask Claude to "set up chartlink" and it gets its own key (`POST /api/signup`, no account) and tells you where to paste it.
 
+## Cursor
+
+The repo root is a Cursor plugin: `.cursor-plugin/plugin.json`, `mcp.json` (the chartlink server over HTTP, key from the `CHARTLINK_API_KEY` environment variable) and the same skill. Install from [cursor.directory](https://cursor.directory) or add the server by hand:
+
+```json
+{ "mcpServers": { "chartlink": { "url": "https://chartlink.app/mcp", "headers": { "X-API-Key": "viz_..." } } } }
+```
+
 ## Any MCP client (HTTP)
 
 ```

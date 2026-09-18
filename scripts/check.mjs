@@ -63,9 +63,17 @@ for (const name of skill.match(/`([a-z_]+)`/g)?.map((s) => s.slice(1, -1)) ?? []
   }
 }
 
+// The Cursor layout at the repo root mirrors the Claude plugin: one skill,
+// one MCP config, two spellings of its filename. They must not drift.
+const rootSkill = readFileSync(join(root, "skills/chartlink/SKILL.md"), "utf8");
+if (rootSkill !== skill) problems.push("skills/chartlink/SKILL.md (Cursor) differs from plugins/chartlink/skills/chartlink/SKILL.md (Claude) — copy one over the other");
+const mcpA = readFileSync(join(root, "mcp.json"), "utf8");
+const mcpB = readFileSync(join(root, ".mcp.json"), "utf8");
+if (mcpA !== mcpB) problems.push("mcp.json and .mcp.json differ — they are the same file under the two names directories look for");
+
 console.log(`server: ${liveTools.length} tools, ${liveTypes.length} chart types`);
 if (problems.length) {
   for (const p of problems) console.error("✗ " + p);
   process.exit(1);
 }
-console.log("✓ LISTING.md and SKILL.md match the live server");
+console.log("✓ LISTING.md, both SKILL.md copies and both mcp.json copies match the live server");
