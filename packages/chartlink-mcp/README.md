@@ -1,6 +1,6 @@
 # chartlink-mcp
 
-A stdio bridge to the chartlink MCP server, for clients that only launch local stdio servers. Charts and tables with live-updating embed links: https://chartlink.app
+A stdio bridge to the chartlink MCP server, for clients that only launch local stdio servers. Charts, maps and tables with live-updating embed links: https://chartlink.app
 
 ```json
 {

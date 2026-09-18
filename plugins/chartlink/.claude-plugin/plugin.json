@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "chartlink",
   "version": "0.1.0",
-  "description": "Charts and tables with live-updating embed links, made from one message. Connects the chartlink MCP server and teaches the create → preview → publish loop.",
+  "description": "Charts, maps and tables with live-updating embed links, made from one message. Connects the chartlink MCP server and teaches the create → preview → publish loop.",
   "author": {
     "name": "chartlink",
     "email": "support@chartlink.app",

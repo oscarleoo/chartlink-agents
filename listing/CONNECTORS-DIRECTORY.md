@@ -34,10 +34,10 @@ get_*; the write group is everything else.
 ## Step: Listing
 
 - Name: `chartlink`
-- Tagline (≤55): `Charts and tables for agents, with live embeds`
+- Tagline (≤55): `Charts, maps and tables for agents, with live embeds`
 - Description (≤2000):
 
-  chartlink makes charts and tables for AI agents. An agent drafts a chart from
+  chartlink makes charts, maps and tables for AI agents. An agent drafts a chart from
   one message, sees the rendered preview inline, adjusts it with a small patch,
   and publishes. What comes back is a live embed, a public share page, a
   full-resolution PNG and a CSV of the data. When the numbers change, one call

@@ -8,7 +8,7 @@ chartlink
 
 ## Tagline (under 80 characters)
 
-Charts and tables for AI agents, with live-updating embed links.
+Charts, maps and tables for AI agents, with live-updating embed links.
 
 ## Short description (under 200 characters)
 
@@ -16,7 +16,7 @@ An agent drafts a chart from one message, looks at the preview, publishes it, an
 
 ## Plain description (what it does — use this on directories)
 
-Creates charts and tables and publishes them as live embeds, PNGs and share pages.
+Creates charts, maps and tables and publishes them as live embeds, PNGs and share pages.
 
 Tools cover the whole loop: sign up for a workspace key, list the chart types and read each type's config schema with worked examples, create a chart from data rows (the response includes a rendered preview), patch its config, replace its data or attach a CSV/JSON URL that refetches on a schedule, publish, unpublish, duplicate, delete. Twelve types: line, bar, area, scatter, dumbbell, slope, heatmap, choropleth, symbol map, pie, waterfall and sortable tables. Maps cover 237 geographies (countries, US states, regions of every country). Brands hold fonts, colours and spacing shared across charts. Any published chart can be used as a template. An edit link opens a visual editor for a person to finish by hand.
 

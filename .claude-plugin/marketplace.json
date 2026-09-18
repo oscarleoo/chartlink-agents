@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "chartlink",
-  "description": "Charts and tables for AI agents: draft from one message, publish, and get a live-updating embed. Plugin with the chartlink MCP server and a skill that teaches the loop.",
+  "description": "Charts, maps and tables for AI agents: draft from one message, publish, and get a live-updating embed. Plugin with the chartlink MCP server and a skill that teaches the loop.",
   "owner": {
     "name": "chartlink",
     "email": "support@chartlink.app"
@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "chartlink",
-      "description": "Make charts and tables with live-updating embed links: the chartlink MCP server plus a skill for the create → preview → publish loop. No account: the plugin can sign up for its own key.",
+      "description": "Make charts, maps and tables with live-updating embed links: the chartlink MCP server plus a skill for the create → preview → publish loop. No account: the plugin can sign up for its own key.",
       "author": { "name": "chartlink" },
       "category": "productivity",
       "source": "./plugins/chartlink",

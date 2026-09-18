@@ -1,6 +1,6 @@
 # chartlink for agents
 
-[chartlink](https://chartlink.app) makes charts and tables with live-updating embed links. An agent drafts a chart from one message, looks at the preview, publishes it, and hands back an embed that updates when the numbers do. No accounts: the API key is the workspace.
+[chartlink](https://chartlink.app) makes charts, maps and tables with live-updating embed links. An agent drafts a chart from one message, looks at the preview, publishes it, and hands back an embed that updates when the numbers do. No accounts: the API key is the workspace.
 
 This repo is how agents connect.
 

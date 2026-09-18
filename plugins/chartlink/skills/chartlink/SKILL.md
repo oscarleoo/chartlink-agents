@@ -3,7 +3,7 @@ name: chartlink
 description: Make a chart or table someone can embed, share or keep updated — a live-updating embed, a PNG for Substack, a public share page — with chartlink. Covers getting a key without an account, the draft → look → publish loop, updating the numbers later, and handing a human an edit link.
 ---
 
-# Charts and tables with live-updating embeds
+# Charts, maps and tables with live-updating embeds
 
 ## When to use this skill
 
