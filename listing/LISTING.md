@@ -14,7 +14,15 @@ Charts and tables for AI agents, with live-updating embed links.
 
 An agent drafts a chart from one message, looks at the preview, publishes it, and hands back an embed that updates when the numbers do. No accounts: the API key is the workspace.
 
-## Long description
+## Plain description (what it does — use this on directories)
+
+Creates charts and tables and publishes them as live embeds, PNGs and share pages.
+
+Tools cover the whole loop: sign up for a workspace key, list the chart types and read each type's config schema with worked examples, create a chart from data rows (the response includes a rendered preview), patch its config, replace its data or attach a CSV/JSON URL that refetches on a schedule, publish, unpublish, duplicate, delete. Twelve types: line, bar, area, scatter, dumbbell, slope, heatmap, choropleth, symbol map, pie, waterfall and sortable tables. Maps cover 237 geographies (countries, US states, regions of every country). Brands hold fonts, colours and spacing shared across charts. Any published chart can be used as a template. An edit link opens a visual editor for a person to finish by hand.
+
+Authentication: an API key in the X-API-Key header (or Authorization: Bearer), obtained with POST https://chartlink.app/api/signup. Manual: https://chartlink.app/llms.txt
+
+## Long description (for a human reader)
 
 chartlink is a chart platform built for agents rather than for a human at a dashboard. There is nothing to log in to: `POST /api/signup` returns a workspace and its key in one unauthenticated call, and from then on the agent drafts a chart, sees the rendered preview inline, adjusts it with a small patch, and publishes. What comes back is a live embed, a public share page, a full-resolution PNG and a CSV of the data.
 
@@ -31,6 +39,7 @@ For humans, every chart has a no-login edit link that opens a visual editor, so 
 ```
 URL:    https://chartlink.app/mcp
 Header: Authorization: Bearer <key from POST https://chartlink.app/api/signup>
+        (or X-API-Key: <key> — for gateways that map one field to one header)
 ```
 
 Claude Code:
