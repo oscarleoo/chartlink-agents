@@ -1,6 +1,6 @@
 # chartlink for agents
 
-[chartlink](https://chartlink.app) makes charts, maps and tables with live-updating embed links. An agent drafts a chart from one message, looks at the preview, publishes it, and hands back an embed that updates when the numbers do. No accounts: the API key is the workspace.
+[chartlink](https://chartlink.app) makes charts, maps and tables with live-updating embed links, from templates. An agent finds the template that answers the need, sends the data and a few knobs (theme, data type, the words), looks at the preview, and hands back an embed that updates when the numbers do. No accounts: the API key is the workspace, and browsing the templates needs no key at all.
 
 This repo is how agents connect.
 
@@ -11,7 +11,7 @@ This repo is how agents connect.
 /plugin install chartlink@chartlink
 ```
 
-The plugin adds the chartlink MCP server and a skill that teaches the create → preview → publish loop. Ask Claude to "set up chartlink" and it gets its own key (`POST /api/signup`, no account) and tells you where to paste it.
+The plugin adds the chartlink MCP server and a skill that teaches the template loop: find the template, read its contract, create from it, hand back the links. Ask Claude to "set up chartlink" and it gets its own key (`POST /api/signup`, no account) and tells you where to paste it.
 
 ## Cursor
 
@@ -37,6 +37,10 @@ npx chartlink-mcp
 ```
 
 with `CHARTLINK_API_KEY=viz_...` in the environment. It bridges stdio to the HTTP server above; nothing runs locally but the bridge. Source in `packages/chartlink-mcp`.
+
+## Template path or the whole engine
+
+`https://chartlink.app/mcp` exposes the template path (nine tools). `https://chartlink.app/mcp?full=1` exposes every tool of the engine. Manuals: https://chartlink.app/llms.txt (templates) and https://chartlink.app/llms-full.txt (the engine).
 
 ## Plain REST
 
