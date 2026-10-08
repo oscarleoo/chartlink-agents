@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "chartlink",
-  "version": "0.1.0",
-  "description": "Charts, maps and tables with live-updating embed links, from templates. Connects the chartlink MCP server and teaches the template loop: find the template, read its contract, create from it with your data and a few knobs, hand back the links.",
+  "version": "0.2.0",
+  "description": "Charts and maps in your own brand, with live-updating embed links, made from one message. Connects the chartlink MCP server (you sign in once in the browser) and teaches the brand loop: create, look at the preview, publish.",
   "author": {
     "name": "chartlink",
     "email": "support@chartlink.app",
@@ -13,19 +13,12 @@
   "license": "MIT",
   "keywords": [
     "charts",
+    "maps",
     "data visualization",
     "embed",
-    "tables",
+    "brand",
     "mcp",
     "substack",
     "newsletter"
-  ],
-  "userConfig": {
-    "api_key": {
-      "type": "string",
-      "title": "chartlink API key",
-      "description": "Starts with viz_. Don't have one? Ask Claude to \"set up chartlink\": the skill calls POST https://chartlink.app/api/signup (no account needed) and shows you the key to paste here.",
-      "sensitive": true
-    }
-  }
+  ]
 }

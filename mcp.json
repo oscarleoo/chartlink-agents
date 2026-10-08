@@ -1,10 +1,7 @@
 {
   "mcpServers": {
     "chartlink": {
-      "url": "https://chartlink.app/mcp",
-      "headers": {
-        "X-API-Key": "${env:CHARTLINK_API_KEY}"
-      }
+      "url": "https://chartlink.app/mcp"
     }
   }
 }

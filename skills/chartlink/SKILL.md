@@ -1,61 +1,48 @@
 ---
 name: chartlink
-description: Make a chart or map someone can embed, share or keep updated — a live-updating embed, a PNG for Substack, a public page — with chartlink. Templates first: find the template that answers the need, send the data and a few knobs, hand back the links. Covers getting a key without an account, the template loop, the dry run for region codes, updating the numbers later, and edit links for humans.
+description: Make a chart or map in the person's own brand that they can embed, share or keep updated — a live-updating embed, a PNG for Substack, a page — with chartlink. Covers signing in, the brand loop (create, look at the preview, publish, hand back the links), maps (find the geography first), updating the numbers later, and upgrading on request.
 ---
 
-# Charts, maps and tables from templates
+# Charts and maps in the person's brand
 
 ## When to use this skill
 
 Use it when the person wants a chart or map they can **put somewhere**: embed in a site, Notion, Ghost or WordPress; insert into a Substack post; share a link; or keep the numbers updating after it is published. If they only want to glance at a chart once in the conversation, a quick image is fine; chartlink is for charts that live somewhere.
 
-chartlink is agent-first and template-first. No accounts or logins: the API key IS the workspace. A template is a finished design; you bring the data and a few choices.
+chartlink is brand-first: the person's brand (fonts, colours, layout, logo) is made once in the studio, and every chart is drawn in it. You bring the data and the words; the brand decides the look.
 
-## The loop (four steps)
+## Signing in
 
-1. **Find the template.** `list_templates` with `q` = what the person asked for ("map of US counties", "map of Germany's states"). Results are ranked by the need they answer; take the first. `tags` narrows (`map,united-states`). No key needed.
-2. **Read its contract.** `get_template` with the id or slug. The `contract` has everything: `knobs` (a JSON Schema of the few settings), `columns` with roles, `region` (the code convention with three real codes and a lookup URL), `dataTypes` (what the value column must be for gradient, buckets or categories), and `example` — a complete call whose shape you copy. No key needed.
-3. **Create from it.** `create_from_template` with `template`, `data` shaped like the example, `knobs`, and `publish: true` when it is final. A success means it validated AND rendered, and the preview comes back inline — look at it. Unsure of the region codes? `check_template_data` first: it names every value that would not match, with the closest real codes, and creates nothing.
-4. **Hand back the links** from `urls` in the response: `embedIframe` for a site, `png` + `page` for Substack, `page` for a link. Never build URLs yourself.
+If the `chartlink` tools are available, you are signed in. If `/mcp` shows chartlink as needing sign-in, tell the person to select it there and sign in in the browser; they pick the workspace this connection works in. No key is needed or stored. `whoami` says which workspace you are in.
 
-Over REST the same four calls are `GET /api/templates?q=…`, `GET /api/templates/{id}`, `POST /api/templates/{id}/check`, `POST /api/assets`. Manual: https://chartlink.app/llms.txt.
+No brand yet? Ask the person to make one at https://chartlink.app/studio from their website — it takes a minute — rather than styling charts by hand.
 
-## Knobs
+## The loop
 
-The template's settings, and the only ones you need:
+1. **Pick the brand.** `list_brands`. Use the one the person names (`brand: "<slug>"`); without one, the workspace's default is used.
+2. **Read the chart type once.** `get_spec_schema {type}` — read its notes and examples first. `list_asset_types` lists the types: line, area, bar, scatter, dumbbell, slope, pie, waterfall, heatmap, candlestick, choropleth, symbol-map.
+3. **Create.** `create_asset {type, brand, data, config: {title, encoding, …}}`. Set only what the story needs (title, description, source, encoding, a highlight); never restyle what the brand already decides. A success means it validated and rendered, and the preview comes back inline — look at it.
+4. **Fix and publish.** `update_asset` with a small `configPatch` if needed, then `publish_asset` (or `publish: true` once it is right).
+5. **Hand back the links** from `urls`: `studio` (the person can fine-tune there), `png` for Substack, `embedIframe` for a site. Never build URLs yourself.
 
-- `theme`: `light` or `dark` — the whole colour bundle.
-- `dataType` (maps): `gradient` (a number per region on a continuous scale), `buckets` (numbers sorted into classes with a swatch key), `categories` (a TEXT label per region, one colour each).
-- The scale knob for the dataType: `range` [min, max] for gradient; `breaks` or `classes` for buckets; `categoryColors` / `categoryOrder` for categories. Omit them and the scale fits the data.
-- `title`, `description`, `source` (with `url`), `brand` (premium only): each `{text, fontFamily, fontSize, color, lineHeight}`.
-- `backgroundColor`, `border`.
+Charts land in the brand's drafts in the studio. To change a chart the person means, find it with `list_assets` and `get_asset`.
 
-Anything beyond the knobs is the advanced path: a `config` object with the engine's settings, merged after the knobs. Reach for it only when a template does not fit; the full engine is documented at https://chartlink.app/llms-full.txt and exposed at `https://chartlink.app/mcp?full=1`.
+## Maps
 
-## Setup
-
-If the `chartlink` tools are available, you are set up. If the connection has no key, browsing still works, and the first `create_from_template` creates a workspace for you and returns its key in `newWorkspace.apiKey` — shown once. Tell the person to paste it into the plugin's `api_key` setting (`/plugin` → chartlink → configure) so later calls land in the same workspace. The `signup` tool does the same step on its own; over REST it is `POST https://chartlink.app/api/signup` with `{"ref": "claude-code-plugin"}`.
-
-## Data rules that save a round trip
-
-- Use the template's column ids from the contract, or send exactly two columns for a map: region first, value second.
-- Region codes are text. Keep leading zeros (a FIPS county is `"06037"`, a ZIP prefix `"010"`). Names and listed aliases also work; unknown values fail with the closest matches.
-- A region with no row stays grey. That is fine and expected.
-- `categories` needs a text column; `gradient` and `buckets` need numbers. The error says which you sent.
+Never guess a geography id. `find_geography` with the region column (or the request in words), then `create_asset {type: "choropleth", config: {chart: {geography}}}`. When nothing fits, `request_geography` and offer a symbol map or a bar chart instead.
 
 ## Keeping it updated
 
-- **New numbers, same chart:** `replace_asset_data` (or `PUT /assets/{id}/data`). A published chart republishes; every embed and PNG shows the new data at once.
-- **Words or knobs after the fact:** `update_asset` with a small `configPatch` (`{"title": {"text": "…"}}`), then `publish_asset`.
-
-## Handing a human the wheel
-
-When the person wants to fine-tune by hand, mint an edit link: `create_edit_link`. It opens a visual editor for that one chart, no login. Publish first: the editor republishes a published chart but cannot publish a draft.
+New numbers, same chart: `replace_asset_data`. A published chart republishes; every embed and PNG shows the new data at once.
 
 ## Money
 
-Hosting is free with a small "Made with chartlink" badge. One credit makes a chart premium forever: no badge, SVG, the `brand` knob. `create_checkout_link` returns a payment URL for the human; never enter payment details yourself.
+Charts are free with a small chartlink badge. Upgrading one (`upgrade_to_premium`) spends one of the workspace's credits: the brand's own footer instead of the badge, and print files. Only when the person asks. Without credits, `create_checkout_link` returns a payment link for the person; never enter payment details yourself.
+
+## More
+
+The inline preview is 640px wide: before judging a hairline or a label, fetch `/api/assets/{id}/preview.png?width=1600`. Brand editing, data sources and every other tool: `https://chartlink.app/mcp?full=1` and https://chartlink.app/llms-full.txt.
 
 ## Stuck?
 
-`submit_feedback` tells the owner what was missing. Do not silently give up.
+`submit_feedback` tells the owner what was missing — what you tried, what you expected, what happened. Do not silently give up or work around it.

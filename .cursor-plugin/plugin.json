@@ -1,8 +1,8 @@
 {
   "name": "chartlink",
   "displayName": "chartlink",
-  "version": "0.1.0",
-  "description": "Creates charts, maps and tables and publishes them as live embeds, PNGs and share pages. The chartlink MCP server (27 tools: sign up for a key, read a type's schema, create from data rows with a rendered preview, patch, replace data or attach a refetching CSV/JSON URL, publish, templates, brands, edit links) plus a skill that teaches the create → preview → publish loop.",
+  "version": "0.2.0",
+  "description": "Charts and maps in your own brand, published as live embeds, PNGs and pages. The chartlink MCP server (sign in once in the browser) plus a skill that teaches the brand loop: create, look at the preview, publish.",
   "author": {
     "name": "chartlink",
     "email": "support@chartlink.app",
@@ -11,6 +11,15 @@
   "homepage": "https://chartlink.app",
   "repository": "https://github.com/oscarleoo/chartlink-agents",
   "license": "MIT",
-  "keywords": ["charts", "maps", "tables", "data visualization", "embed", "mcp", "choropleth", "newsletter"],
+  "keywords": [
+    "charts",
+    "maps",
+    "data visualization",
+    "embed",
+    "brand",
+    "mcp",
+    "choropleth",
+    "newsletter"
+  ],
   "logo": "assets/logo.svg"
 }
